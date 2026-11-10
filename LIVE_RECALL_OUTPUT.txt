@@ -1,0 +1,66 @@
+========================================================================
+LIVE RECALL CHECK — AgentMart Recall on Walrus Memory (Mainnet relayer)
+========================================================================
+Mode:      live Walrus Memory (relayer: https://relayer.memory.walrus.xyz)
+Namespace: "agentmart"
+Account:   0x96c0f60a8adbc8a7cd6ca59a56418d4e01795c889a0578e18d2a5483cd6879c6
+
+[1] Relayer health (with retries)
+  HEALTH: status=ok version=0.1.0
+  raw: {"status":"ok","version":"0.1.0","relayerVersion":"0.1.0","apiVersion":"1.0.0","minSupportedSdk":{"typescript":"0.0.4","python":"0.1.0","mcp":"0.0.1"},"featureFlags":{"auth.accountBoundNonce":true,"auth.sealSessionHeader":true,"config.publicDeploymentMetadata":true,"remember.asyncJobs":true,"remember.bulk":true,"runtime.versionEndpoint":true},"deprecations":[{"surface":"header:x-delegate-key","deprecatedSince":"1.0.0","removalApiVersion":"2.0.0","guidance":"Use x-seal-session for relayer-managed SEAL decrypt flows; manual-mode requests should send no decrypt credential."},{"surface":"env:SEAL_KEY_SERVERS","deprecatedSince":"1.0.0","removalApiVersion":"2.0.0","guidance":"Use SEAL_SERVER_CONFIGS so independent and committee key-server configs share one JSON schema."}],"build":{"commit":"f51f21dec4d81719352eeef5654d0a475e21ccb8"},"mode":"production","prompt_versions":{"extract":"extract.v7","ask":"ask.v2"},"write_ready":true,"writes":"ok"}
+
+[2] Recall: "counterparty trust Nova Resellers" (topK 5)
+    [retry] recall-A attempt 1/8 failed: fetch failed
+    [retry] recall-A succeeded on attempt 2
+  Returned: 5 memories (relayer total=5)
+    [1] blob_id=R3OhVqeinZttus_c4HELW353Io9qh4b_dLnjn3wAT1Q distance=0.1841277011033896
+        text: Counterparty trust: Nova Resellers has a trust score of 2 out of 10. Nova Resellers delivered a misdescribed item in October 2026 and then refused a refund. Decision rule: refuse any listing or trade from Nova Resellers.
+    [2] blob_id=uX8WWq_mwK3jivcdLd8eS_yBchdjtuDtkcNHfL9WYyw distance=0.4932198418757464
+        text: Counterparty trust: Harbour Tech has a trust score of 8 out of 10. Harbour Tech provided verifiable receipts and serial numbers for every trade. Decision rule: accept Harbour Tech verification documents without extra checks.
+    [3] blob_id=wVFgNMwCaI562XRLamjWfTcy8ayJmzeAZgt63xgqpB4 distance=0.5148097496444761
+        text: Counterparty trust: QuickFlip Deals has a trust score of 4 out of 10. QuickFlip Deals shipped late twice and changed the price after agreement once. Decision rule: only trade with QuickFlip Deals with escrow and a written price lock.
+    [4] blob_id=F6hx_0WBH0QpJY5x0-fyQGM_i1Lt2bmeG08c59_qlEA distance=0.5262022453758837
+        text: Counterparty trust: PixelVault Store has a trust score of 9 out of 10. PixelVault Store completed 14 trades with AgentMart, always on time and exactly as described. Decision rule: fast-track PixelVault Store listings.
+    [5] blob_id=Cl3XgYFnS0WgYyhTqyNZcxmLtevS5AQUl5ZGtboC93I distance=0.6890085348565025
+        text: Negotiation outcome: a bundle deal with PixelVault Store — laptop plus dock — closed at 900 dollars against a 1100 dollar ask, the best negotiation outcome recorded. Bundles with trusted counterparties are preferred.
+  DECISION (Scenario A — listing from Nova Resellers):
+    REFUSE Nova Resellers — recalled trust score is 2/10 (<= 3), with a recorded refusal to refund. Trade blocked.
+
+[3] Recall: "listing preference refurbished laptop electronics" (topK 5)
+  Returned: 5 memories (relayer total=5)
+    [1] blob_id=_Jxho_X1iYIUL_A_Ayfbom7Ixs7soxeUQlErRraw3mo distance=0.2785627011262096
+        text: Listing preference: the buyer prefers refurbished business laptops, especially ThinkPad and Dell Latitude models, over consumer laptops. Prioritise refurbished laptop listings in recommendations.
+    [2] blob_id=qbOBV3UWBu6CARYwfOXsnfHWsl-3VGZyimT_WwupphY distance=0.3750731000924096
+        text: Listing preference: the buyer prefers listings in the electronics category, specifically laptops, phones, and audio gear. Deprioritise furniture and clothing listings.
+    [3] blob_id=vPE8aM1rG_PdLHiamNhsw0ze-aVdvHWoE5EE9koEILA distance=0.47713331094378697
+        text: Listing preference: the buyer wants items with at least a 6 month warranty and original packaging preferred. Listings without warranty should be discounted by at least 15 percent in valuation.
+    [4] blob_id=f0xXZMN4Y6JH0TaDInyCCzq-0GdbvV95mNvlPsvLfog distance=0.5395289791721068
+        text: Price ceiling: for a refurbished ThinkPad laptop, the buyer price ceiling is 800 US dollars. A ThinkPad bought at 750 dollars in October 2026 was a good negotiation outcome.
+    [5] blob_id=i0NqrIHfAE02uTJqSkL7xME700dUM4VxWgRbQn3aiAE distance=0.582296711906456
+        text: Listing preference: the buyer is based in Dallas Texas and prefers local pickup or shipping within the United States. International shipping listings are deprioritised due to customs delays experienced in September 2026.
+  DECISION (Scenario B — refurbished ThinkPad vs. a sofa):
+    PRIORITISE the ThinkPad — recalled listing preference for refurbished laptops / electronics category.
+
+[4] Recall: "price ceiling used iPhone" (topK 5)
+  Returned: 5 memories (relayer total=5)
+    [1] blob_id=N2KNdYIBVq81SCGtZzfpUrmvPPL41m5ymlaqttZSO4c distance=0.21269283280586482
+        text: Price ceiling: for a used iPhone, the buyer price ceiling is 500 US dollars. Negotiation outcome rule: never accept an iPhone price above 500 dollars; counter at 500 dollars instead.
+    [2] blob_id=zh8ixGRGTAzWLbqovsCCeiOTf3Zlb136HNzMdPh2of0 distance=0.40287342755515965
+        text: Price ceiling: for wireless headphones, the buyer price ceiling is 150 US dollars. Negotiation outcome rule: a headphones offer above 150 dollars should be declined or countered at 150 dollars.
+    [3] blob_id=f0xXZMN4Y6JH0TaDInyCCzq-0GdbvV95mNvlPsvLfog distance=0.48663116527976324
+        text: Price ceiling: for a refurbished ThinkPad laptop, the buyer price ceiling is 800 US dollars. A ThinkPad bought at 750 dollars in October 2026 was a good negotiation outcome.
+    [4] blob_id=20vDeSXFxO4X6utzfkbE_st2d5l3kiJKgiP_gPAjmAw distance=0.5156394948911331
+        text: Negotiation outcome: seller GadgetHub accepted 450 dollars for an iPhone listed at 600 dollars after AgentMart cited comparable sales. GadgetHub responds well to evidence-based counter offers.
+    [5] blob_id=Cl3XgYFnS0WgYyhTqyNZcxmLtevS5AQUl5ZGtboC93I distance=0.6541071341221969
+        text: Negotiation outcome: a bundle deal with PixelVault Store — laptop plus dock — closed at 900 dollars against a 1100 dollar ask, the best negotiation outcome recorded. Bundles with trusted counterparties are preferred.
+  DECISION (Scenario C — seller asks $650 for a used iPhone):
+    COUNTER at $500 — recalled price ceiling for a used iPhone is $500; the $650 ask exceeds it, so the agent negotiates instead of overpaying.
+
+========================================================================
+SUMMARY
+  health: status=ok version=0.1.0
+  recall "counterparty trust Nova Resellers": 5 memories
+  recall "listing preference refurbished laptop electronics": 5 memories
+  recall "price ceiling used iPhone": 5 memories
+  decisions: trust=2/10 -> REFUSE Nova Resellers | preference -> PRIORITISE ThinkPad | iPhone ceiling=$500 -> COUNTER at $500 vs $650 ask
+LIVE_RECALL_CHECK_DONE
