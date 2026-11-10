@@ -1,0 +1,58 @@
+
+> agentmart-recall@1.0.0 demo
+> node src/agent.js
+
+AgentMart Recall — persistent-memory marketplace agent
+========================================================================
+
+[1] Tatum Sui context
+    Wallet:          0x9f1771097e059aa7e5c8b2a297d7bccee64d7ccddbf5fd8a1b0231982e79c664
+    Tatum account:   6ada2d995f43a0f8387ba89a
+    Checkpoint:      271828182  [mock (no TATUM_API_KEY)]
+    SUI balance:     1250000000 MIST (1.25 SUI)  [mock (no TATUM_API_KEY)]
+    Recent txs:      2 shown  [mock (no TATUM_API_KEY)]
+      - MockDigest1111111111111111111111111111111111 (SUCCESS)
+      - MockDigest2222222222222222222222222222222222 (SUCCESS)
+
+[2] Walrus Memory
+    Mode:            LOCAL MOCK (MemWalMock) — MEMWAL_PRIVATE_KEY/MEMWAL_ACCOUNT_ID not set; no data left this machine
+    Namespace:       "agentmart"
+    Relayer health:  status=ok version=memwal-mock
+
+    Storing 14 learned memories with rememberAndWait() ...
+      stored  blob_id=mock-blob-000001  ::  Counterparty trust: Nova Resellers has a trust score of 2 out of...
+      stored  blob_id=mock-blob-000002  ::  Counterparty trust: PixelVault Store has a trust score of 9 out ...
+      stored  blob_id=mock-blob-000003  ::  Counterparty trust: QuickFlip Deals has a trust score of 4 out o...
+      stored  blob_id=mock-blob-000004  ::  Listing preference: the buyer prefers refurbished business lapto...
+      stored  blob_id=mock-blob-000005  ::  Listing preference: the buyer prefers listings in the electronic...
+      stored  blob_id=mock-blob-000006  ::  Price ceiling: for a used iPhone, the buyer price ceiling is 500...
+      stored  blob_id=mock-blob-000007  ::  Price ceiling: for a refurbished ThinkPad laptop, the buyer pric...
+      stored  blob_id=mock-blob-000008  ::  Negotiation outcome: seller GadgetHub accepted 450 dollars for a...
+      stored  blob_id=mock-blob-000009  ::  Negotiation outcome: seller SoundWave Audio refused any discount...
+      stored  blob_id=mock-blob-000010  ::  Listing preference: the buyer wants items with at least a 6 mont...
+      stored  blob_id=mock-blob-000011  ::  Counterparty trust: Harbour Tech has a trust score of 8 out of 1...
+      stored  blob_id=mock-blob-000012  ::  Price ceiling: for wireless headphones, the buyer price ceiling ...
+      stored  blob_id=mock-blob-000013  ::  Negotiation outcome: a bundle deal with PixelVault Store — lapto...
+      stored  blob_id=mock-blob-000014  ::  Listing preference: the buyer is based in Dallas Texas and prefe...
+
+[3] Decisions — memory-less baseline vs. AgentMart Recall
+------------------------------------------------------------------------
+
+  Scenario A: listing from Nova Resellers at an attractive price
+    Recalled (5): Counterparty trust: Nova Resellers has a trust score of 2 out of 10. Nova Resellers delivered a misdescribed item in October 2026 and then refused a refund. Decision rule: refuse any listing or trade from Nova Resellers.
+    WITHOUT memory:  ACCEPT — price looks good, no history available.
+    WITH memory:     REFUSE — recalled trust score is 2/10 with a recorded refusal to refund. Trade blocked.
+
+  Scenario B: two new listings — a refurbished ThinkPad and a sofa
+    Recalled (5): Listing preference: the buyer prefers listings in the electronics category, specifically laptops, phones, and audio gear. Deprioritise furniture and clothing listings.
+    WITHOUT memory:  RANK EQUALLY — no preference signal.
+    WITH memory:     PRIORITISE the ThinkPad — recalled listing preference for refurbished laptops / electronics.
+
+  Scenario C: seller asks $650 for a used iPhone
+    Recalled (5): Price ceiling: for a used iPhone, the buyer price ceiling is 500 US dollars. Negotiation outcome rule: never accept an iPhone price above 500 dollars; counter at 500 dollars instead.
+    WITHOUT memory:  ACCEPT at $650 — no ceiling on file.
+    WITH memory:     COUNTER at $500 — recalled price ceiling for a used iPhone is $500; $650 exceeds it, so the agent negotiates instead of overpaying.
+========================================================================
+
+Demo complete: chain context from Tatum, memory on Walrus,
+and three decisions that are demonstrably different because of recall.
