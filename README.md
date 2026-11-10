@@ -83,17 +83,20 @@ labelled Tatum mock data — see `DEMO_OUTPUT.txt` for a captured run.
 ## Identifiers
 
 - Tatum account ID: `6ada2d995f43a0f8387ba89a`
-- Sui address (project wallet): `0x9f1771097e059aa7e5c8b2a297d7bccee64d7ccddbf5fd8a1b0231982e79c664`
-- Walrus Memory account ID (`MEMWAL_ACCOUNT_ID`): `0xf7563b32f9977e5cf722d4bbbb17e992fd84df045b66975608f60feadd165b81`
-- Walrus Memory agent/delegate ID (`MEMWAL_AGENT_ID`, delegate public key): `6201c0e3a906b722607cc851957252de8348bb7edb4c46a739e803e653162312`
-- Walrus Memory account owner (zkLogin wallet): `0x2084e76dd94caeded3a8695b719423acf172cdbab48449fda2ab0100f6071316`
+- Sui address (project wallet, owns the Walrus Memory account below): `0x9f1771097e059aa7e5c8b2a297d7bccee64d7ccddbf5fd8a1b0231982e79c664`
+- Walrus Memory account ID (`MEMWAL_ACCOUNT_ID`): `0x96c0f60a8adbc8a7cd6ca59a56418d4e01795c889a0578e18d2a5483cd6879c6`
+  - Created via the relayer-sponsored flow (zero gas): digest `G9T6Hknr5oHQ1W1pDcxje7jkUmDKTWvHrPE2D98mB24j`
+- Walrus Memory agent/delegate ID (`MEMWAL_AGENT_ID`, delegate public key): `cf79009654b179b73e2958653f3e15747db2fe5156d80f697ef98186427a6b23`
+  - Registered via sponsored `add_delegate_key`: digest `3XFus96D8DrEtKTdAWRsJqMAC43pjmRQSAPDVQchxFto`
 - Relayer: `https://relayer.memory.walrus.xyz`
+- A second Walrus Memory account (`0xf7563b32f9977e5cf722d4bbbb17e992fd84df045b66975608f60feadd165b81`) was created earlier via the dashboard under a zkLogin wallet (`0x2084e76dd94caeded3a8695b719423acf172cdbab48449fda2ab0100f6071316`); the sponsored-flow account above is the one this submission uses, because its delegate key is held by the project.
 
 ## Evidence
 
 - Demo output (offline mock mode): `DEMO_OUTPUT.txt`
-- Live seed run (blob IDs for 10+ Mainnet memories): _placeholder — paste `npm run seed` output after configuring real delegate keys_
-- Demo video: _placeholder — link to be added on submission_
+- Live Mainnet evidence: `LIVE_EVIDENCE.md` — sponsored `create_account` + `add_delegate_key` digests, and all 14 memory blob IDs, recall-verified live (10/10 and 5/5 probe hits)
+- Sponsored-flow tooling used for the live setup: `scratch-sponsor/` (`sponsor-setup.mjs`, `seed-resilient.mjs`)
+- Demo video: https://www.youtube.com/watch?v=uU9k1IlcGzA (public, 2m10s)
 - Blog post: `blog-post.md` (draft in this repo)
 
 ## License
